@@ -130,7 +130,7 @@ Please include tests for new features when reasonable.
 
 ---
 
-## 👤 Author
+## 🧑‍💻 Author
 
 Developed by **[Nikunj Mehta](https://github.com/Nikunj-Mehta)** 🚀
 
