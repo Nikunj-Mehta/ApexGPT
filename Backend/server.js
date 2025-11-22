@@ -33,7 +33,7 @@ app.post("/test", async (req, res) => {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", options); // we are giving the link along with the options object which has suitable properties we need to send in request(request body). We are storing the response in response variable
     const data = await response.json(); //response.json(): Converts HTTP response body → JS object
     // console.log(data);
-    res.send(data.choices[0].message.content); // We have a data object, which has choices as array or objects, we need 0th ele of choices array, object at 0th element has multiple fields in which we need message object and in messge object we have content which is exactly what we need.
+    res.send(data.choices[0].message.content); // Response // We have a data object, which has choices as array or objects, we need 0th ele of choices array, object at 0th element has multiple fields in which we need message object and in messge object we have content which is exactly what we need.
   } catch(err) {
     console.log(err);
   }
