@@ -2,7 +2,7 @@
 import Groq from "groq-sdk";
 import "dotenv/config";
 
-const client = new Groq({ 
+const client = new Groq({ // No need to learn this just visit the docs of groq-sdk and you will find it
   apiKey: process.env.GROQ_API_KEY 
 });
 
