@@ -25,6 +25,14 @@
     width: fit-content;
 }
 
+.hljs {
+  border-radius: 14px;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
 /* For dark scrolbar */
 .chats::-webkit-scrollbar {
   width: 6px;
