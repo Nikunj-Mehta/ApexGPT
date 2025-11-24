@@ -19,7 +19,7 @@ app.listen(PORT, () => {
 
 const connectDB = async() => { // Mongoose: To see this syntax visit mongoose npm documentation.
   try{
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI); // URI → Uniform Resource Identifier
     console.log("Connected with Database");
   } catch(err) {
     console.log(`Failed to connect with Database ${err}`);

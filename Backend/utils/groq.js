@@ -2,7 +2,7 @@ import "dotenv/config";
 
 // The message in here is the message which user types in input box.
 // This is how we are going to use GROQ's API to get replys of our input. Flow => user will type in input box on clicking submit or enter that text will be sent to backend in which we will take what user has typed and then we will send that in "options" object as content and will store the reply and display it neatly in frontend.
-const getGroqAPIResponse = async(message) => {
+const getGroqAPIResponse = async (message) => {
   const options = {
     method: "POST",
     headers: {

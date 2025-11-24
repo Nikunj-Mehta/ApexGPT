@@ -8,7 +8,7 @@ const router = express.Router(); // used to create mini, modular, separate route
 router.post("/test", async (req, res) => { // if post request comes http://localhost:8080/api/test then this will be done.
   try {
     const thread = new Thread({
-      threadId: "abc",
+      threadId: "abc", // you need to change this everytime you send a request as this field must be unique
       title: "Testing New Thread"
     });
 
@@ -49,7 +49,7 @@ router.get("/thread/:threadId", async (req, res) => {
   }
 });
 
-// DELETE find the thread by threadId and delete it
+// DELETE : find the thread by threadId and delete it
 router.delete("/thread/:threadId", async (req, res) => {
   const {threadId} = req.params; // Extract threadId from request params
 
@@ -67,7 +67,7 @@ router.delete("/thread/:threadId", async (req, res) => {
   }
 });
 
-// POST: Most Imp request. The user types and sends the message, now we need ThreadId and message, we will first search in DB that is there a thread with this threadId. If yes then store the user's message, but if not then we will create a new Thread and will store the message in there. Now we will send a call to GROQ's API with the message and when we get the reply from API we will store that message(assistant) in the Thread.messages and then the response will be sent to the frontend.
+// POST: Most Imp request. The user types and sends the message, now we need ThreadId and message, we will first search in DB that is there a thread with this threadId. If yes then store the user's message, but if not then we will create a new Thread and will store the message in there. Now we will send a call to GROQ's API with the message and when we get the reply from API we will store that message(assistant) in the Thread.messages and then store the Thread in db, then the response will be sent to the frontend.
 router.post("/chat", async (req, res) => {
   const {threadId, message} = req.body; // Extract threadId and messages from POST request's body
   
