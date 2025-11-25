@@ -37,7 +37,7 @@ function Sidebar() {
       const response = await fetch(`http://localhost:8080/api/thread/${newThreadId}`); // Send the request to backend and the route defn will handel the rest
       const res = await response.json();
       console.log(res); // it will return all the chat history that is entire messages array
-      setPrevChats(res);; // as on screen prevChats are getting printed so let's update that
+      setPrevChats(res);; // as on screen prevChats are getting printed so let's update that so that all the messages of previous thread will be displayed
       setNewChat(false); // To set a new chat to false
       setReply(null);
     } catch(err) {
@@ -77,9 +77,10 @@ function Sidebar() {
           allThreads?.map((thread, idx) => ( // if allThreads exists then .map ...
             <li key={idx}
               onClick={(e) => changeThread(thread.threadId)}
+              className={thread.threadId === currThreadId ? "highlighted" : ""} 
             >
               {thread.title}
-              <i className="fa-regular fa-trash-can"
+              <i className="fa-regular history-trash-can fa-trash-can"
                 onClick={(e) => {
                   e.stopPropagation(); // because when we clicked on delete we also clicked on open that chat with this threadId and we want to avoid that therefor we wrote that. This is event bubbling
                   deleteThread(thread.threadId);

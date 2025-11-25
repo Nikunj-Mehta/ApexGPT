@@ -7,6 +7,7 @@ import { ScaleLoader } from "react-spinners"; // This is a npm package use to di
 function ChatWindow() {
   const { prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat } = useContext(MyContext);
   const [loading, setLoading] = useState(false); // State variable used to display loader whenever we are sending request and before reply arrives.
+  const [isOpen, setIsOpen] = useState(false); // to display the dropDown in account
 
   const getReply = async () => {
     setLoading(true); // When we are sending the request we want to show loader
@@ -51,17 +52,32 @@ function ChatWindow() {
     setPrompt(""); // When we store this then we need to empty the input box. That is done by useState function setPrompt("") to empty string
   }, [reply]); // useEffect( function, dependancy) reply is the dependency here we want to run the function whenever there is a change in reply
 
+  const handleProfileClick = () => {
+    setIsOpen(!isOpen);
+  }
+
   return (
     <div className="chatWindow">
 
       <div className="navbar">
         <span>ApexGPT <i className="fa-solid fa-chevron-down"></i></span>
         
-        <div className="userIconDiv">
+        <div className="userIconDiv" onClick={handleProfileClick}>
           <span className="userIcon"><i className="fa-solid fa-user"></i></span>
         </div>
 
       </div>
+
+      {
+        isOpen && 
+        <div className="dropDown">
+          <div className="dropDownItem"><i class="fa-solid fa-gear"></i> Settings</div>
+          <div className="dropDownItem"><i class="fa-solid fa-cloud-arrow-up"></i> Upgrade Plan</div>
+          <div className="dropDownItem"><i class="fa-regular fa-trash-can"></i> Delete</div>
+          <div className="dropDownItem"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</div>
+
+        </div>
+      }
 
       <Chat></Chat>
 
