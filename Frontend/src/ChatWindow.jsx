@@ -5,11 +5,12 @@ import { useContext, useState, useEffect } from "react";
 import { ScaleLoader } from "react-spinners"; // This is a npm package use to display bounce effect in the loading time, after we send req and before we receive a response 
 
 function ChatWindow() {
-  const { prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats } = useContext(MyContext);
-  const [loading, setLoading] = useState(false);
+  const { prompt, setPrompt, reply, setReply, currThreadId, prevChats, setPrevChats, setNewChat } = useContext(MyContext);
+  const [loading, setLoading] = useState(false); // State variable used to display loader whenever we are sending request and before reply arrives.
 
   const getReply = async () => {
     setLoading(true); // When we are sending the request we want to show loader
+    setNewChat(false); // so we don't see Start a New Chat
     console.log("message", prompt, " threadId", currThreadId); 
     const options = { // We are sending a post request to backend on the route we defined for new chat with threadId and message in body as we are extracting that in our req route defination
       method: "POST",
@@ -64,7 +65,8 @@ function ChatWindow() {
 
       <Chat></Chat>
 
-      <ScaleLoader color="#fff" loading={loading}></ScaleLoader>
+      <ScaleLoader color="#fff" loading={loading}>
+      </ScaleLoader>
 
       <div className="chatInput">
 

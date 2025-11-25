@@ -8,7 +8,7 @@ const router = express.Router(); // used to create mini, modular, separate route
 router.post("/test", async (req, res) => { // if post request comes http://localhost:8080/api/test then this will be done.
   try {
     const thread = new Thread({
-      threadId: "abc", // you need to change this everytime you send a request as this field must be unique
+      threadId: "abcd", // you need to change this everytime you send a request as this field must be unique
       title: "Testing New Thread"
     });
 
@@ -42,7 +42,7 @@ router.get("/thread/:threadId", async (req, res) => {
       res.status(404).json({ error: "Thread not found" });
     } 
 
-    res.json(thread.messages); //response.json(): Converts HTTP response body → JS object  
+    res.json(thread.messages); //response.json(): Converts HTTP response body → JS object  As we need to display only messages[] of req and reply so we will send message array only
   } catch(err) {
     console.log(err);
     res.status(500).json({ error: "Failed to fetch chat" });
@@ -82,7 +82,7 @@ router.post("/chat", async (req, res) => {
       thread = new Thread({
         threadId,
         title: message, // message.split(" ").slice(0, 4).join(" ") : To store first 4 words of messages string.
-        messages: [{ role: "user", content: message }] // It is an array of objects 
+        messages: [{ role: "user", content: message }] // It is an array of objects
       });
     } else { // If the thread already exists
       thread.messages.push({ role: "user", content: message }); // Push the new object in existing thread's messages array(of objects) and give role: user, content: message 

@@ -1,8 +1,8 @@
 import express from "express"; 
 import "dotenv/config"; // Used to import and use .env file
-import cors from "cors"; // Cross orgin resourse sharing allows communication between frontend and backend.
+import cors from "cors"; // Cross orgin resourse sharing allows backend to accept request from other domains like communication between frontend and backend.
 import mongoose from "mongoose"; // npm package used to connect MongoDB Atlas with our backend, also use to define schema and validations, middlewares
-import chatRoutes from "./routes/chat.js";
+import chatRoutes from "./routes/chat.js"; // Used to define routes
 
 const app = express();
 const PORT = 8080;
